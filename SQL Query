@@ -1,0 +1,74 @@
+/* What does the app's SQL look like? */
+
+/* I decide to utilize an app to that tracks an individual's information and physical activity. */
+
+CREATE TABLE strava (id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT,
+    age Integer);
+    
+/* I populate it with a few random users. */
+
+INSERT INTO strava (first_name, last_name, email, age) VALUES
+    ("Bobby", "Bently", "bobbyboi45@email.com", 42);
+INSERT INTO strava (first_name, last_name, email, age) VALUES
+    ("Casey", "Curry", "coolgirlcasey1@email.com", 23);
+INSERT INTO strava (first_name, last_name, email, age) VALUES
+    ("Donovan", "Danks", "ddx964@email.com", 34);
+INSERT INTO strava (first_name, last_name, email, age) VALUES
+    ("Felicia", "Folley", "felfelkgm@email.com", 56);
+INSERT INTO strava (first_name, last_name, email, age) VALUES
+    ("Thomas", "Engine", "tomaseng@email.com", 29);
+INSERT INTO strava (first_name, last_name, email, age) VALUES
+    ("Georgia", "Green", "gg1954@email.com", 37);
+    
+SELECT * FROM strava;
+
+/* I realized one of the users' email has a spelling mistake and made changes to it. */
+
+UPDATE strava SET email = "thomaseng@email.com" WHERE first_name = "Thomas";
+
+SELECT * FROM strava;
+
+/* I also realized that I would need to delete a user from the table as she is no longer a user of the app. */
+
+DELETE FROM strava WHERE first_name = "Georgia";
+
+SELECT * FROM strava;
+
+/* I created another table with regards to each users' physical activity and information. */
+    
+CREATE TABLE activity (id INTEGER PRIMARY KEY,
+    sport TEXT,
+    duration_km INTEGER,
+    time_min INTEGER);
+    
+INSERT INTO activity (sport, duration_km, time_min) VALUES
+    ("running", 466, 169);
+INSERT INTO activity (sport, duration_km, time_min) VALUES
+    ("spinning", 726, 583);
+INSERT INTO activity (sport, duration_km, time_min) VALUES
+    ("skating", 287, 236);
+INSERT INTO activity (sport, duration_km, time_min) VALUES
+    ("hiking", 791, 580);
+INSERT INTO activity (sport, duration_km, time_min) VALUES
+    ("rowing", 623, 374);    
+    
+SELECT * FROM activity;
+
+/* I've decided that adding a coloum date would be appropriate for that physical activity. */
+
+ALTER TABLE activity ADD date TEXT default "unknown";
+
+SELECT * FROM activity;
+
+/* I then update each activity for each user in terms of the date of activity. */
+
+UPDATE activity SET date = "2022-03-04" WHERE id = 1;
+UPDATE activity SET date = "2022-06-21" WHERE id = 2;
+UPDATE activity SET date = "2022-07-12" WHERE id = 3;
+UPDATE activity SET date = "2022-05-16" WHERE id = 4;
+UPDATE activity SET date = "2022-01-28" WHERE id = 5;
+
+SELECT * FROM activity;
